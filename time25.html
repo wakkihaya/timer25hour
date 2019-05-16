@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header>
+    1日25時間過ごせる時計
+</header>
+<div id="cover">
+    <div id="wrap">
+<div id = "title">
+    1時間を57.6分とすることで、実質1日25時間生きれます！！
+</div>
+
+<!--時計を実装する-->
+<div id="time">
+   <p id="hyouji">現在時刻は</p>
+    <P id ="clock"></P>
+</div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function showClock() {
+        var nowTime = new Date();
+
+        var nowHour = nowTime.getHours();
+        var nowMin = nowTime.getMinutes();
+        var nowSec = nowTime.getSeconds();
+
+        //本当の時間が24時を過ぎた瞬間、この時計もリセット。
+
+        var total = (nowHour * 60 * 60 + nowMin * 60 + nowSec)
+
+        var rate = 24 / 25;
+        var total25 = parseFloat(total) * parseFloat(rate);
+
+        nowHour = parseInt(total25 / 3600);
+        nowMin = parseInt((total25 % 3600) / 60);
+        nowSec = parseInt((total25 % 3600) % 60);
+
+        var msg = nowHour + ":" + nowMin + ":" + nowSec;
+
+        document.getElementById("clock").innerHTML = msg;
+    }
+    setInterval('showClock()',1000);
+
+</script>
+
+<style>
+    html,body{
+        margin:0;
+        padding:0;
+        max-height:100vh;
+    }
+
+    #cover{
+        background-image:url("time.jpg");
+        background-repeat: no-repeat;
+        background-size:cover;
+        height:100%;
+
+    }
+
+    #wrap{
+        background:rgba(0,0,0,0.5);
+        height:100%;
+    }
+
+    header{
+        height:10vh;
+        background:#ee6633;
+        color:#fff;
+        font-size:30px;
+        line-height:10vh;
+        font-weight:bold;
+        text-align:center;
+        font-family: sans-serif;
+    }
+
+    #title{
+        text-align:center;
+        height:30vh;
+        width:100%;
+        padding-top:30px;
+        font-size:1.3rem;
+        color:#fff;
+
+    }
+
+    #time{
+        height:50vh;
+        width:100%;
+      text-align:center;
+    }
+    #hyouji{
+        text-align:center;
+        color:#fff;
+        font-size:1.3rem;
+    }
+
+    #clock{
+        background:rgba(166,20,20,0.8);
+        color:#fff;
+        font-size:2rem;
+        font-weight:bold;
+    }
+
+
+</style>
