@@ -5,20 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<class="wrapper">
     <header>
         25 hours-driven clock
     </header>
 
     <div id="cover">
-        <P id ="clock"></P>
-        <p id = date></p>
+        <div id="timer">
+            <P id ="clock"></P>
+            <p id = date></p>
+        </div>
     </div>
     <footer>
         <p id="explaination">In this clock, 1 hour is <b>57.6</b> minutes so that you can spend <b>25</b> hours in a day.</div>
         <p id = "me">implementer: <a href="https://wakkihaya.com">wakkihaya</a></p>
     </footer>
-</div>
 
 </body>
 </html>
@@ -75,16 +75,11 @@
         max-height:100vh;
     }
 
-    .wrapper{
-       display: flex;
-        flex-direction: column;
-    }
-
     header{
         height:10vh;
         background:#ee6633;
         color:#fff;
-        font-size:30px;
+        font-size:3vh;
         line-height:10vh;
         font-weight:bold;
         text-align:center;
@@ -93,6 +88,8 @@
 
     #cover{
         height: 70vh;
+        display: table;
+        width: 100%;
     }
 
     footer{
@@ -125,6 +122,12 @@
         color: #fff;
     }
 
+    #timer{
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
     #date{
         text-align: center;
         font-size: 2.5em;
@@ -137,8 +140,23 @@
         font-weight:bold;
         margin: 0;
         padding-top: 5%
-
     }
+
+    @media only screen and (max-device-width : 750px) {
+        #clock{
+            font-size: 18vw;
+        }
+        #date{
+            font-size: 7vw;
+        }
+        footer #explaination{
+            font-size: 2vh;
+        }
+        footer #me{
+            font-size: 1.6vh;
+        }
+    }
+
 
 
 </style>
