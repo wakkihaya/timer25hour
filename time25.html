@@ -5,30 +5,31 @@
     <title>Title</title>
 </head>
 <body>
+<class="wrapper">
+    <header>
+        25 hours-driven clock
+    </header>
 
-<header>
-    1日25時間過ごせる時計
-</header>
-<div id="cover">
-    <div id="wrap">
-<div id = "title">
-    1時間を57.6分とすることで、実質1日25時間生きれます！！
-</div>
-
-<!--時計を実装する-->
-<div id="time">
-   <p id="hyouji">現在時刻は</p>
-    <P id ="clock"></P>
-</div>
+    <div id="cover">
+        <P id ="clock"></P>
+        <p id = date></p>
     </div>
-
+    <footer>
+        <p id="explaination">In this clock, 1 hour is <b>57.6</b> minutes so that you can spend <b>25</b> hours in a day.</div>
+        <p id = "me">implementer: <a href="https://wakkihaya.com">wakkihaya</a></p>
+    </footer>
 </div>
-
 
 </body>
 </html>
 
 <script type="text/javascript">
+
+    var today = new Date();
+    var month = parseInt(today.getMonth()) + 1;
+    var todayDate = today.getFullYear() + '/' + month + '/' + today.getDate();
+    document.getElementById("date").innerHTML = todayDate;
+
     function showClock() {
         var nowTime = new Date();
 
@@ -47,11 +48,23 @@
         nowMin = parseInt((total25 % 3600) / 60);
         nowSec = parseInt((total25 % 3600) % 60);
 
+        if(nowHour < 10){
+            nowHour = '0' + nowHour;
+        }
+        if(nowMin < 10){
+            nowMin = '0' + nowMin;
+        }
+
+        if(nowSec < 10){
+            nowSec = '0' + nowSec;
+        }
+
         var msg = nowHour + ":" + nowMin + ":" + nowSec;
 
         document.getElementById("clock").innerHTML = msg;
     }
     setInterval('showClock()',1000);
+
 
 </script>
 
@@ -62,17 +75,9 @@
         max-height:100vh;
     }
 
-    #cover{
-        background-image:url("time.jpg");
-        background-repeat: no-repeat;
-        background-size:cover;
-        height:100%;
-
-    }
-
-    #wrap{
-        background:rgba(0,0,0,0.5);
-        height:100%;
+    .wrapper{
+       display: flex;
+        flex-direction: column;
     }
 
     header{
@@ -86,32 +91,49 @@
         font-family: sans-serif;
     }
 
-    #title{
-        text-align:center;
-        height:30vh;
-        width:100%;
-        padding-top:30px;
-        font-size:1.3rem;
-        color:#fff;
-
+    #cover{
+        height: 70vh;
     }
 
-    #time{
-        height:50vh;
-        width:100%;
-      text-align:center;
-    }
-    #hyouji{
+    footer{
         text-align:center;
+        width:100%;
+        height: 20vh;
+        background-color: #ee6633;
         color:#fff;
+        position: relative;
+    }
+
+    footer #explaination{
+        position: absolute;
+        top:10%;
+        margin: 0;
         font-size:1.3rem;
+        right: 0;
+        left: 0;
+    }
+
+    footer #me{
+        position: absolute;
+        bottom:3%;
+        font-size: 1rem;
+        right: 0;
+        left: 0;
+    }
+
+    #date{
+        text-align: center;
+        font-size: 2.5em;
     }
 
     #clock{
-        background:rgba(166,20,20,0.8);
-        color:#fff;
-        font-size:2rem;
+        color:#000;
+        font-size:15vw;
+        text-align: center;
         font-weight:bold;
+        margin: 0;
+        padding-top: 5%
+
     }
 
 
