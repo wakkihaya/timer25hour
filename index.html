@@ -39,14 +39,12 @@
 
         //本当の時間が24時を過ぎた瞬間、この時計もリセット。
 
-        var total = (nowHour * 60 * 60 + nowMin * 60 + nowSec)
+        var total = (nowHour * 60 * 60 + nowMin * 60 + nowSec);
 
-        var rate = 24 / 25;
-        var total25 = parseFloat(total) * parseFloat(rate);
 
-        nowHour = parseInt(total25 / 3600);
-        nowMin = parseInt((total25 % 3600) / 60);
-        nowSec = parseInt((total25 % 3600) % 60);
+        nowHour = parseInt(total / (57.6*60));
+        nowMin = parseInt((total % (57.6*60)) / 60);
+        nowSec = parseInt((total % (57.6*60)) % 60);
 
         if(nowHour < 10){
             nowHour = '0' + nowHour;
